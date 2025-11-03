@@ -1,0 +1,73 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: turquoise;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Caja izquierda */
+.add-task,
+.task-list {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  width: 300px;
+}
+
+/* Inputs y botones */
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
+button {
+  background-color: turquoise;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 3px;
+}
+
+/* Lista de tareas */
+.task-list__search {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tasks {
+  list-style: none;
+  padding: 0;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 3px;
+}
+
+.task span {
+  margin-left: 0.5rem;
+}

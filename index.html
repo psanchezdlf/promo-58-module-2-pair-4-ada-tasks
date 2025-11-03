@@ -1,9 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>AdaTasks</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <h1 class="header__title">AdaTasks</h1>
+    </header>
+
+    <main class="main">
+      <section class="add-task">
+        <input
+          type="text"
+          class="add-task__input"
+          placeholder="Añadir nueva tarea..."
+        />
+        <button class="add-task__btn">Agregar</button>
+      </section>
+
+      <section class="task-list">
+        <div class="task-list__search">
+          <input
+            type="text"
+            class="task-list__input"
+            placeholder="Ejemplo: gimnasio"
+          />
+          <button class="task-list__btn">Buscar</button>
+        </div>
+
+        <ul class="tasks">
+          <li class="task">
+            <input type="checkbox" />
+            <span>Recoger setas en el campo</span>
+          </li>
+          <li class="task">
+            <input type="checkbox" />
+            <span>Comprar pilas</span>
+          </li>
+          <li class="task">
+            <input type="checkbox" />
+            <span>Poner una lavadora de blancos</span>
+          </li>
+          <li class="task">
+            <input type="checkbox" />
+            <span>Aprender peticiones al servidor en JS</span>
+          </li>
+          <li class="task">
+            <input type="checkbox" />
+            <span>Ir al gimnasio</span>
+          </li>
+          <li class="task">
+            <input type="checkbox" />
+            <span>Comprar flores</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <script src="./main.js"></script>
+  </body>
 </html>
