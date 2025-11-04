@@ -1,7 +1,17 @@
 "use strict";
 
-const task_list = document.querySelector(".js_task_list");
+//Buscamos la lista donde se pintan las tareas
+const taskList = document.querySelector(".js_task_list");
 
+// Creamos una variable vacía donde guardaremos las tareas
+let tasks = [];
+
+//Crea variables para almacenar la información del usuario de github y la url del endpoint
+const GITHUB_USER = "psanchezdlf";
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
+
+
+/*Array local: los datos estaban guardados en local y con fetch los pasamos a servidor
 const tasks = [
   { name: "Recoger setas en el campo", completed: true, id: 1 },
   { name: "Comprar pilas", completed: true, id: 2 },
@@ -12,20 +22,46 @@ const tasks = [
     id: 4,
   },
 ];
+*/
 
-//const oneTask =  { name: "Poner una lavadora de blancos", completed: true, id: 3 };
+//Crea una función para pintar la lista
+
+function renderTasks() {
+  // limpiar lista para no duplicar
+  taskList.innerHTML = "";
+
+  for (const task of tasks) {
+    // Creamos un <li> por cada tarea y una clase para tachado
+    taskList.innerHTML += `
+       <li class="task ${task.completed ? "task_completed" : ""}">
+        <input type="checkbox" ${task.completed ? "checked" : ""} />
+        <span>${task.name}</span>
+      </li>`;
+  }
+};
+
+// Haz el fetch al servidor y guarda la respuesta en tasks
+//    - Pedimos datos
+//    - Los convertimos a JSON
+//    - Guardamos los datos en la variable vacía que hemos creado 'tasks'
 
 
+fetch(SERVER_URL)
+  .then((response) => response.json())
+  .then((data) => {
+    // En este API, las tareas vienen en data.results
+    tasks = data.results || [];
+    renderTasks();               
+  })
 
+  //si algo falla (no hay internet, error 404, etc.) sale un mensajito
+  .catch((err) => {
+    console.error(err);
+    //en lugar de la tarea sale un mensaje de error
+    taskList.innerHTML = `<li class="task"><span>Error cargando tareas</span></li>`;
+  });
+  
 
-
-for (const task of tasks) {
-  // Creamos un <li> por cada tarea
-  task_list.innerHTML += `<li class="task">
-            <input type="checkbox" />
-            <span>${task.name}</span>
-          </li> `;
-}
 
 
 

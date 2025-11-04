@@ -71,3 +71,9 @@ button {
 .task span {
   margin-left: 0.5rem;
 }
+
+/* Texto tachado para tareas completadas */
+.task_completed span {
+  text-decoration: line-through;
+  color: #888;
+}
