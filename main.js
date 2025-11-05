@@ -1,7 +1,8 @@
 "use strict";
 
-//Buscamos la lista donde se pintan las tareas
 const taskList = document.querySelector(".js_task_list");
+const addInput = document.querySelector(".js_add_task_input");
+const addBtn = document.querySelector(".js_add_task_btn");
 
 // Creamos una variable vacía donde guardaremos las tareas
 let tasks = [];
@@ -9,7 +10,6 @@ let tasks = [];
 //Crea variables para almacenar la información del usuario de github y la url del endpoint
 const GITHUB_USER = "psanchezdlf";
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
-
 
 /*Array local: los datos estaban guardados en local y con fetch los pasamos a servidor
 const tasks = [
@@ -38,20 +38,19 @@ function renderTasks() {
         <span>${task.name}</span>
       </li>`;
   }
-};
+}
 
 // Haz el fetch al servidor y guarda la respuesta en tasks
 //    - Pedimos datos
 //    - Los convertimos a JSON
 //    - Guardamos los datos en la variable vacía que hemos creado 'tasks'
 
-
 fetch(SERVER_URL)
   .then((response) => response.json())
   .then((data) => {
     // En este API, las tareas vienen en data.results
     tasks = data.results || [];
-    renderTasks();               
+    renderTasks();
   })
 
   //si algo falla (no hay internet, error 404, etc.) sale un mensajito
@@ -60,10 +59,29 @@ fetch(SERVER_URL)
     //en lugar de la tarea sale un mensaje de error
     taskList.innerHTML = `<li class="task"><span>Error cargando tareas</span></li>`;
   });
-  
 
+const handleNewTask = (event) => {
+  event.preventDefault();
 
+  // 1. Recoge el nombre de la tarea
+  const text = addInput.value.trim();
 
+  // 2. Crea un objeto para la nueva tarea
+  const newTask = {
+    name: text, // sustituye este string vacío por el nombre de la tarea nueva
+    completed: false,
+  };
+
+  // 3. Añade la nueva tarea al array de tareas
+  tasks.push(newTask);
+
+  // 4. Vuelve a pintar las tareas
+  renderTasks();
+};
+
+//EVENTO
+
+addBtn.addEventListener("click", handleNewTask);
 
 /*<li class="task">
             <input type="checkbox" />
